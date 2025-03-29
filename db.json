@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "id": "2",
+      "task": "deploy project",
+      "completed": false
+    },
+    {
+      "id": "13ff",
+      "text": "code challenge",
+      "completed": false
+    },
+    {
+      "id": "6e3f",
+      "text": "project presentation",
+      "completed": false
+    },
+    {
+      "id": "b962",
+      "text": "math",
+      "completed": false
+    }
+  ]
+}
