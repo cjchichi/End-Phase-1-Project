@@ -54,10 +54,6 @@ function handleFormSubmit(event) {
   }
 }
 
-// Add this code after your existing event listeners
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-
 // Function to render tasks
 function renderTasks() {
   const taskContainer = document.getElementById('taskContainer');
