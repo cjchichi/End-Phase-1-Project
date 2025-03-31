@@ -1,8 +1,8 @@
 // API URL
-const API_URL = 'http://localhost:3000/tasks'; // Replace with your actual API URL
+const API_URL = 'https://my-app-backend-dfhv.onrender.com/api/tasks'; // Replace with your actual API URL
 
 // DOM elements
-const taskManagerContainer = document.querySelector(".taskManager");
+const taskManagerContainer = document.querySelector (".taskManager");
 const confirmEl = document.querySelector(".confirm");
 const confirmedBtn = confirmEl.querySelector(".confirmed");
 const cancelledBtn = confirmEl.querySelector(".cancel");
@@ -37,6 +37,7 @@ function handleFormSubmit(event) {
     .then(task => {
       renderTasks(); // Re-render tasks after adding a new one
       taskInput.value = ''; // Clear the input field
+      return response.json();
     })
     .catch(error => console.error('Error adding task:', error));
   }
@@ -111,14 +112,17 @@ function renderTasks() {
 
 // Function to delete the selected task
 function deleteTask() {
-  //const taskId = tasks[indexToBeDeleted].id;
-  fetch(`${API_URL}/${indexToBeDeleted}`, {
+  const taskId = tasks[indexToBeDeleted].id;
+  if (taskToDelete !== null){
+  fetch(`${API_URL}/${taskId}`, {
     method: 'DELETE',
   })
   .then(() => {
     renderTasks(); // Re-render tasks after deletion
+    taskToDelete = null;
   })
   .catch(error => console.error('Error deleting task:', error));
+}
 }
 
 // Confirm delete action
@@ -138,3 +142,6 @@ cancelledBtn.addEventListener("click", () => {
 
 // Initial render of tasks when the page loads
 renderTasks();
+
+
+

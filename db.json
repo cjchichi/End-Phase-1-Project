@@ -4,37 +4,42 @@
       "id": "2",
       "task": "deploy project",
       "completed": true,
-      "delete":"task"
+      "delete": "task"
     },
     {
       "id": "13ff",
       "text": "code challenge",
       "completed": false,
-      "delete":"task"
+      "delete": "task"
     },
     {
       "id": "6e3f",
       "text": "project presentation",
       "completed": false,
-      "delete":"task"
+      "delete": "task"
     },
     {
       "id": "b962",
       "text": "math",
       "completed": false,
-      "delete":"task"
+      "delete": "task"
     },
     {
       "id": "da65",
       "text": "writing a project pitch",
       "completed": false,
-      "delete":"task"
+      "delete": "task"
     },
     {
       "id": "6a0c",
       "text": "writing a project pitch",
       "completed": false,
-      "delete":"task"
+      "delete": "task"
+    },
+    {
+      "id": "16e1",
+      "text": "group discussions",
+      "completed": false
     }
   ]
 }
