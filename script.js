@@ -7,7 +7,7 @@ const taskManagerContainer = document.querySelector (".taskManager");
 const confirmEl = document.querySelector(".confirm");
 const confirmedBtn = confirmEl.querySelector(".confirmed");
 const cancelledBtn = confirmEl.querySelector(".cancel");
-let indexToBeDeleted = null;
+//let indexToBeDeleted = null;
 
 // event listener to the form submit event
 document.getElementById('taskForm').addEventListener('submit', handleFormSubmit);
@@ -112,7 +112,7 @@ function renderTasks() {
 
 //delete tasks
 function deleteTask(taskId) {
-  fetch(`https://my-app-backend-dfhv.onrender.com/api/tasks`, {
+  fetch(`${API_URL}/${taskId}`, {
     method: 'DELETE',
   })
     .then(response => response.json())
