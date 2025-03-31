@@ -4,13 +4,13 @@
       "id": "2",
       "task": "deploy project",
       "completed": true,
-      "delete": "task"
+      "delete": ""
     },
     {
       "id": "13ff",
       "text": "code challenge",
       "completed": false,
-      "delete": "task"
+      "delete": ""
     },
     {
       "id": "6e3f",
@@ -22,24 +22,25 @@
       "id": "b962",
       "text": "math",
       "completed": false,
-      "delete": "task"
+      "delete": ""
     },
     {
       "id": "da65",
       "text": "writing a project pitch",
       "completed": false,
-      "delete": "task"
+      "delete": ""
     },
     {
       "id": "6a0c",
       "text": "writing a project pitch",
       "completed": false,
-      "delete": "task"
+      "delete": ""
     },
     {
       "id": "16e1",
       "text": "group discussions",
-      "completed": false
+      "completed": false,
+      "delete":""
     }
   ]
 }

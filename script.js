@@ -1,31 +1,32 @@
 // API URL
-const API_URL = 'https://my-app-backend-dfhv.onrender.com/api/tasks'; // Replace with your actual API URL
+const API_URL = 'https://my-app-backend-dfhv.onrender.com/api/tasks'; 
 
 // DOM elements
+let tasks = [];
 const taskManagerContainer = document.querySelector (".taskManager");
 const confirmEl = document.querySelector(".confirm");
 const confirmedBtn = confirmEl.querySelector(".confirmed");
 const cancelledBtn = confirmEl.querySelector(".cancel");
 let indexToBeDeleted = null;
 
-// Add event listener to the form submit event
+// event listener to the form submit event
 document.getElementById('taskForm').addEventListener('submit', handleFormSubmit);
 
-// Function to handle form submission
+// Function form submission
 function handleFormSubmit(event) {
   event.preventDefault();
   
   const taskInput = document.getElementById('taskInput');
   const taskText = taskInput.value.trim();
 
-  // If task text is not empty, add it to the API
+
   if (taskText !== '') {
     const newTask = {
       text: taskText,
       completed: false
     };
 
-    // POST the new task to the API
+
     fetch(API_URL, {
       method: 'POST',
       headers: {
@@ -35,8 +36,8 @@ function handleFormSubmit(event) {
     })
     .then(response => response.json())
     .then(task => {
-      renderTasks(); // Re-render tasks after adding a new one
-      taskInput.value = ''; // Clear the input field
+      renderTasks(); 
+      taskInput.value = ''; 
       return response.json();
     })
     .catch(error => console.error('Error adding task:', error));
@@ -46,9 +47,9 @@ function handleFormSubmit(event) {
 // Function to render tasks
 function renderTasks() {
   const taskContainer = document.getElementById('taskContainer');
-  taskContainer.innerHTML = ''; // Clear current tasks
+  taskContainer.innerHTML = ''; 
 
-  // Fetch tasks from the API
+  //fetch tasks
   fetch(API_URL)
     .then(response => response.json())
     .then(tasks => {
@@ -73,7 +74,7 @@ function renderTasks() {
         btnContentEl.innerText = task.completed ? 'Mark as Pending' : 'Mark as Completed';
         toggleButton.appendChild(btnContentEl);
         toggleButton.addEventListener('click', () => {
-          // PATCH task to update its completed status
+          
           fetch(`${API_URL}/${task.id}`, {
             method: 'PATCH',
             headers: {
@@ -82,7 +83,7 @@ function renderTasks() {
             body: JSON.stringify({ completed: !task.completed })
           })
           .then(response => response.json())
-          .then(() => renderTasks()) // Re-render tasks after updating
+          .then(() => renderTasks()) 
           .catch(error => console.error('Error updating task:', error));
         });
 
@@ -109,30 +110,24 @@ function renderTasks() {
     .catch(error => console.error('Error fetching tasks:', error));
 }
 
-
-// Function to delete the selected task
-function deleteTask() {
-  const taskId = tasks[indexToBeDeleted].id;
-  if (taskToDelete !== null){
-  fetch(`${API_URL}/${taskId}`, {
+//delete tasks
+function deleteTask(taskId) {
+  fetch(`https://my-app-backend-dfhv.onrender.com/api/tasks`, {
     method: 'DELETE',
   })
-  .then(() => {
-    renderTasks(); // Re-render tasks after deletion
-    taskToDelete = null;
-  })
-  .catch(error => console.error('Error deleting task:', error));
-}
+    .then(response => response.json())
+    .then(() => renderTasks()) 
+    .catch(error => console.error('Error deleting task:', error));
 }
 
-// Confirm delete action
+
 confirmedBtn.addEventListener("click", () => {
   confirmEl.style.display = "none";
   taskManagerContainer.classList.remove("overlay");
-  deleteTask();
+  deleteTask(indexToBeDeleted); 
 });
 
-// Cancel delete action
+
 cancelledBtn.addEventListener("click", () => {
   confirmEl.style.display = "none";
   taskManagerContainer.classList.remove("overlay");
@@ -140,7 +135,7 @@ cancelledBtn.addEventListener("click", () => {
 
 
 
-// Initial render of tasks when the page loads
+
 renderTasks();
 
 
