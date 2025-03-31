@@ -87,6 +87,19 @@
     color: #fff;
     transition: 0.3s;
     }
+
+    /* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text color */
+  }
+  
+  .taskCard.dark-mode {
+    background-color: #1e1e1e; /* Darker background for task cards */
+    color: #ffffff; /* Light text color for task cards */
+  }
+  
+  /* Other styles for your application */
     
     #taskContainer {
         display: flex;

@@ -2,7 +2,17 @@
 const API_URL = 'https://my-app-backend-dfhv.onrender.com/api/tasks'; 
 
 // DOM elements
-let tasks = [];
+let tasks = [{
+  "id": "2",
+  "task": "deploy project",
+  "completed": true
+},
+{
+  "id": "13ff",
+  "text": "code challenge",
+  "completed": false,
+  "delete": ""
+}];
 const taskManagerContainer = document.querySelector (".taskManager");
 const confirmEl = document.querySelector(".confirm");
 const confirmedBtn = confirmEl.querySelector(".confirmed");
@@ -43,6 +53,10 @@ function handleFormSubmit(event) {
     .catch(error => console.error('Error adding task:', error));
   }
 }
+
+// Add this code after your existing event listeners
+const darkModeToggle = document.getElementById('darkModeToggle');
+
 
 // Function to render tasks
 function renderTasks() {
@@ -117,7 +131,7 @@ function deleteTask(index) {
     return;
   }
 
-  const taskId = tasks[index]?.id; 
+  const taskId = tasks[index].id; 
 
  
   if (!taskId) {
@@ -139,6 +153,7 @@ function deleteTask(index) {
 confirmedBtn.addEventListener("click", () => {
   confirmEl.style.display = "none";
   taskManagerContainer.classList.remove("overlay");
+  console.log('Tasks array before deletion:', tasks);
   deleteTask(indexToBeDeleted);
 });
 
