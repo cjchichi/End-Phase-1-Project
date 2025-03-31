@@ -109,24 +109,37 @@ function renderTasks() {
     })
     .catch(error => console.error('Error fetching tasks:', error));
 }
+  
+function deleteTask(index) {
+  // Ensure index is valid
+  if (index === undefined || index === null || index < 0 || index >= tasks.length) {
+    console.error('Invalid index provided:', index);
+    return;
+  }
 
+  const taskId = tasks[index]?.id; // Safely access task ID
 
-function deleteTask(taskId) {
-  //console.log(`Sending DELETE request for task with ID: ${taskId}`);
-  fetch(`https://my-app-backend-dfhv.onrender.com/api/tasks:taskId`, {
+  // Check if taskId is valid
+  if (!taskId) {
+    console.error('Invalid taskId:', taskId);
+    return;
+  }
+
+  // Proceed with deleting the task if taskId is valid
+  fetch(`${API_URL}/${taskId}`, {
     method: 'DELETE',
   })
-    .then(response => response.json())
-    .then(() => renderTasks()) 
+    .then(() => {
+      tasks.splice(index, 1);  // Remove the task from the array
+      renderTasks();  // Re-render tasks after deletion
+    })
     .catch(error => console.error('Error deleting task:', error));
 }
-
 
 confirmedBtn.addEventListener("click", () => {
   confirmEl.style.display = "none";
   taskManagerContainer.classList.remove("overlay");
-  console.log(`Sending DELETE request for task with ID: ${taskId}`);
-  deleteTask(indexToBeDeleted); 
+  deleteTask(indexToBeDeleted);
 });
 
 
@@ -134,10 +147,5 @@ cancelledBtn.addEventListener("click", () => {
   confirmEl.style.display = "none";
   taskManagerContainer.classList.remove("overlay");
 });
-
-
-
-
-
 
 

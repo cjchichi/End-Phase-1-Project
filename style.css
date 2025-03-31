@@ -175,7 +175,7 @@
         text-transform: uppercase;
     }
     
-    
+
     .overlay {
         position: relative;
     }
@@ -266,3 +266,4 @@
     .confirm button:active {
         background: #D6D6D6;
     }
+        
