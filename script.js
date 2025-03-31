@@ -110,28 +110,28 @@ function renderTasks() {
     .catch(error => console.error('Error fetching tasks:', error));
 }
   
+//function delete task
 function deleteTask(index) {
-  // Ensure index is valid
   if (index === undefined || index === null || index < 0 || index >= tasks.length) {
     console.error('Invalid index provided:', index);
     return;
   }
 
-  const taskId = tasks[index]?.id; // Safely access task ID
+  const taskId = tasks[index]?.id; 
 
-  // Check if taskId is valid
+ 
   if (!taskId) {
     console.error('Invalid taskId:', taskId);
     return;
   }
 
-  // Proceed with deleting the task if taskId is valid
+  
   fetch(`${API_URL}/${taskId}`, {
     method: 'DELETE',
   })
     .then(() => {
-      tasks.splice(index, 1);  // Remove the task from the array
-      renderTasks();  // Re-render tasks after deletion
+      tasks.splice(index, 1);  
+      renderTasks();  
     })
     .catch(error => console.error('Error deleting task:', error));
 }
