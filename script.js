@@ -7,7 +7,7 @@ const taskManagerContainer = document.querySelector (".taskManager");
 const confirmEl = document.querySelector(".confirm");
 const confirmedBtn = confirmEl.querySelector(".confirmed");
 const cancelledBtn = confirmEl.querySelector(".cancel");
-//let indexToBeDeleted = null;
+let indexToBeDeleted = null;
 
 // event listener to the form submit event
 document.getElementById('taskForm').addEventListener('submit', handleFormSubmit);
@@ -110,9 +110,10 @@ function renderTasks() {
     .catch(error => console.error('Error fetching tasks:', error));
 }
 
-//delete tasks
+
 function deleteTask(taskId) {
-  fetch(`${API_URL}/${taskId}`, {
+  //console.log(`Sending DELETE request for task with ID: ${taskId}`);
+  fetch(`https://my-app-backend-dfhv.onrender.com/api/tasks:taskId`, {
     method: 'DELETE',
   })
     .then(response => response.json())
@@ -124,6 +125,7 @@ function deleteTask(taskId) {
 confirmedBtn.addEventListener("click", () => {
   confirmEl.style.display = "none";
   taskManagerContainer.classList.remove("overlay");
+  console.log(`Sending DELETE request for task with ID: ${taskId}`);
   deleteTask(indexToBeDeleted); 
 });
 
@@ -136,7 +138,6 @@ cancelledBtn.addEventListener("click", () => {
 
 
 
-renderTasks();
 
 
 
